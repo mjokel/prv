@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     /* init Mapping instance ------------------------------------------------ */
 
     // get key-value mapping for processing the ASCII header's structure
-    std::map<std::string, Mapping> mapping = getMapping();
+    std::map<std::string, MetaInfo> metainfo = getMetaInfo();
 
 
     /* handle file ---------------------------------------------------------- */
@@ -132,7 +132,7 @@ int main(int argc, char* argv[]) {
     {
         // get mapping and bytes
         // NOTE: mapping is passed by reference → no special syntax required!
-        auto [mm, by] = parse(hb, i, mapping);
+        auto [mm, by] = parse(hb, i, metainfo);
 
         
         LOG4CXX_INFO(Logger::get(), "main: getKey : " << mm.getKey() << " (" << mm.getKeyLen() << "+" << mm.getValLen() << "=" << mm.getLen() << ")");
@@ -145,7 +145,7 @@ int main(int argc, char* argv[]) {
         LOG4CXX_INFO(Logger::get(), "main: i: " << i << " -> " << (i+mm.getLen()));
         
         // get setter function from mapping and assign respective value
-        Mapping::SetterFunction setterFunc = mm.getSetter();
+        MetaInfo::SetterFunction setterFunc = mm.getSetter();
         (h.*setterFunc)(by); 
 
         // add number of processed bytes to index i
