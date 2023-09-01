@@ -1,0 +1,23 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# executable
+prvh
+
+# macOS generated files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# logger binaries
+apache-log4cxx-1.1.0/*
+
+# other irrelevant files
+main.dSYM/*
+*.txt
+*.log
